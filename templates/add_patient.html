@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة مريض</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>إضافة مريض جديد</h1>
+        <form method="post" action="{{ url_for('add_patient') }}">
+            <div class="form-group">
+                <label for="name">الاسم:</label>
+                <input type="text" name="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="age">العمر:</label>
+                <input type="number" name="age" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="address">العنوان:</label>
+                <input type="text" name="address" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">الجنس:</label>
+                <select name="gender" class="form-control" required>
+                    <option value="ذكر">ذكر</option>
+                    <option value="أنثى">أنثى</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="social_status">الحالة الاجتماعية:</label>
+                <input type="text" name="social_status" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="chronic_diseases">الأمراض المزمنة:</label>
+                <input type="text" name="chronic_diseases" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="diagnosis">التشخيص:</label>
+                <input type="text" name="diagnosis" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="previous_medications">الأدوية السابقة:</label>
+                <input type="text" name="previous_medications" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="previous_imaging">الأشاعات السابقة:</label>
+                <input type="text" name="previous_imaging" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="previous_tests">التحاليل السابقة:</label>
+                <input type="text" name="previous_tests" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">إضافة مريض</button>
+        </form>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary mt-3">العودة إلى الصفحة الرئيسية</a>
+    </div>
+
+    <!-- تضمين ملفات Bootstrap JS (اختياري) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js">

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض المرضى</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>عرض المرضى</h1>
+        
+        <!-- نموذج البحث -->
+        <form method="get" action="{{ url_for('view_patients') }}" class="form-inline mb-4">
+            <input type="text" name="search" class="form-control mr-2" placeholder="ابحث عن مريض" value="{{ request.args.get('search', '') }}">
+            <button type="submit" class="btn btn-primary">بحث</button>
+        </form>
+
+        <!-- قائمة المرضى -->
+        <ul class="list-group">
+            {% for patient in patients %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ patient.name }}
+                    <!-- رابط لصفحة التقارير الخاصة بكل مريض -->
+                    <a href="{{ url_for('reports', patient_id=patient.id) }}" class="btn btn-info btn-sm">عرض التقارير</a>
+                </li>
+            {% else %}
+                <li class="list-group-item">لا توجد نتائج للبحث</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('index') }}" class="btn btn-secondary mt-3">العودة إلى الصفحة الرئيسية</a>
+    </div>
+
+    <!-- تضمين ملفات Bootstrap JS (اختياري) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    
+</body>
+</html>

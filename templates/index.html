@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>لوحة التحكم</h1>
+        
+        <!-- إحصائيات -->
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">إجمالي المرضى</h5>
+                        <p class="card-text">{{ total_patients }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">إجمالي الاستشارات</h5>
+                        <p class="card-text">{{ total_consultations }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">إجمالي الأشعة</h5>
+                        <p class="card-text">{{ total_imaging }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">إجمالي التحاليل</h5>
+                        <p class="card-text">{{ total_tests }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- قائمة المرضى -->
+        <h3>قائمة المرضى</h3>
+        <ul class="list-group">
+            {% for patient in patients %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ patient.name }}
+                    <!-- رابط لصفحة التقارير الخاصة بكل مريض -->
+                    <a href="{{ url_for('reports', patient_id=patient.id) }}" class="btn btn-info btn-sm">عرض التقارير</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <hr>
+
+        <!-- روابط أخرى -->
+        <a href="{{ url_for('add_patient') }}" class="btn btn-primary mt-3">إضافة مريض</a>
+        <a href="{{ url_for('view_patients') }}" class="btn btn-info mt-3">عرض المرضى</a>
+        <a href="{{ url_for('add_consultation') }}" class="btn btn-primary mt-3">إضافة استشارة</a>
+        <a href="{{ url_for('add_imaging') }}" class="btn btn-primary mt-3">إضافة إشاعة</a>
+        <a href="{{ url_for('add_test') }}" class="btn btn-primary mt-3">إضافة تحليل</a>
+    </div>
+
+    <!-- تضمين ملفات Bootstrap JS (اختياري) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
